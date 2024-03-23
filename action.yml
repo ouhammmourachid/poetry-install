@@ -1,0 +1,41 @@
+name: 'Install dependencies using Poetry'
+description: 'Install dependencies using Poetry.'
+author: '@ouhammmourachid'
+branding:
+  icon: 'truck'
+  color: 'blue'
+
+
+inputs:
+  python-version:
+    description: 'The version of Python to use.'
+    required: true
+    default: '3.10'
+  poetry-version:
+    description: 'The version of Poetry to use.'
+    required: true
+    default: 'latest'
+  
+
+runs:
+  using: 'composite'
+  steps:
+    # Step 1: Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ inputs.python-version }}
+    
+    # Step 2: Install Poetry
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: ${{ inputs.poetry-version }}
+    
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: |
+        poetry install
+        poetry show
+      shell: bash
+    
