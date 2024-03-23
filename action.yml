@@ -35,8 +35,6 @@ runs:
     # Step 3: Install dependencies
     - name: Install dependencies
       run: |
-        cd $GITHUB_WORKSPACE
-        ls -all
         poetry install
         poetry show
       shell: bash
