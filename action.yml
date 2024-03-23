@@ -32,7 +32,11 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.python-version }}
-    
+    - name: Add Poetry to PATH
+      run: |
+        echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+      shell: pwsh
+  if: runner.os == 'Windows'
     # Step 3: Install dependencies
     - name: Install dependencies
       run: |
