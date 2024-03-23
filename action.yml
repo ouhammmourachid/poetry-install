@@ -41,7 +41,6 @@ runs:
     # Step 3: Install dependencies
     - name: Install dependencies
       run: |
-        echo "C:\Users\runneradmin\.poetry\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
         poetry install
         poetry show
       shell: bash
