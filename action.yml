@@ -1,4 +1,4 @@
-name: 'Install dependencies using Poetry'
+name: 'Install dependencies with Poetry'
 description: 'Install dependencies using Poetry.'
 author: '@ouhammmourachid'
 branding:
