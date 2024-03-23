@@ -32,6 +32,10 @@ runs:
       with:
         version: ${{ inputs.poetry-version }}
     
+    - name: Add Poetry to PATH
+      run: echo "C:\Users\runneradmin\.poetry\bin" >> $GITHUB_PATH
+      if: runner.os == 'Windows'
+
     # Step 3: Install dependencies
     - name: Install dependencies
       run: |
