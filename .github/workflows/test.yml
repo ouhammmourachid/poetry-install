@@ -1,4 +1,4 @@
-name: CI
+name: test action
 on:
   push:[main]
 
@@ -19,5 +19,5 @@ jobs:
           poetry-version: ${{ matrix.poetry-version }}
       - name: View poetry --help
         run: |
-        poetry --help
-        poetry version
+          poetry --help
+          poetry version
