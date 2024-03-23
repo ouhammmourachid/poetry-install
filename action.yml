@@ -36,7 +36,7 @@ runs:
       run: |
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
-  if: runner.os == 'Windows'
+      if: runner.os == 'Windows'
     # Step 3: Install dependencies
     - name: Install dependencies
       run: |
