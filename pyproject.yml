@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "something"
+version = "0.0.1"
+description = ""
+authors = ["ouhammmourachid <rachidouhammou21@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+bumpver = "^2023.1129"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
