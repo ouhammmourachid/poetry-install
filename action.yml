@@ -20,6 +20,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+  
+    # Step 1: Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
     
     # Step 2: Install Poetry
     - name: Install and configure Poetry
@@ -27,11 +33,6 @@ runs:
       with:
         version: ${{ inputs.poetry-version }}
     
-    # Step 1: Set up Python
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ inputs.python-version }}
     - name: Add Poetry to PATH
       run: |
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
