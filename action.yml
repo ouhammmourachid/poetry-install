@@ -21,7 +21,7 @@ runs:
   using: 'composite'
   steps:
   
-    Step 1: Set up Python
+    # Step 1: Set up Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -38,8 +38,14 @@ runs:
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
       if: runner.os == 'Windows'
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: |
+        poetry install
+        poetry show
+      shell: bash
 
-    # Step 3: Cache Poetry dependencies
+    # Step 4: Cache Poetry dependencies
     - name: Cache Poetry dependencies
       uses: actions/cache@v4
       with:
@@ -48,7 +54,7 @@ runs:
         restore-keys: |
           pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-
     
-    # Step 3: Install dependencies
+    # Step 5: Install dependencies
     - name: Install dependencies
       run: |
         poetry install
