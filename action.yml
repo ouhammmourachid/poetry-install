@@ -38,6 +38,14 @@ runs:
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
       if: runner.os == 'Windows'
+
+    # Step 3: Cache Poetry dependencies
+    - name: Cache Poetry dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pypoetry
+        key: pypoetry-${{ hashFiles('**/poetry.lock') }}
+    
     # Step 3: Install dependencies
     - name: Install dependencies
       run: |
