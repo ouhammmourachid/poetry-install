@@ -33,6 +33,13 @@ runs:
       with:
         version: ${{ inputs.poetry-version }}
     
+    # Step 3: create a virtual environment
+    - name: Create a virtual environment
+      run: |
+        poetry env use python
+        poetry env info
+      shell: bash
+
     - name: Add Poetry to PATH
       run: |
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
@@ -51,7 +58,7 @@ runs:
       with:
         path: |
           ${{ runner.os == 'Windows' && 'C:\Users\runneradmin\AppData\Local\pypoetry' }}
-          ${{ runner.os == 'Linux' && '~/.cache/pypoetry' }}
+          ${{ runner.os == 'Linux' && '~/.cache/pypoetry/**/site-packages' }}
           ${{ runner.os == 'macOS' && '~/Library/Caches/pypoetry' }}
         key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
