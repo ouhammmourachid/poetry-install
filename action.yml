@@ -49,10 +49,13 @@ runs:
     - name: Cache Poetry dependencies
       uses: actions/cache@v4
       with:
-        path: ~/.cache/pypoetry
-        key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{ hashFiles('**/poetry.lock') }}
+        path: |
+          ${{ runner.os == 'Windows' && 'C:\Users\runneradmin\AppData\Local\pypoetry' }}
+          ${{ runner.os == 'Linux' && '~/.cache/pypoetry' }}
+          ${{ runner.os == 'macOS' && '~/Library/Caches/pypoetry' }}
+        key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
-          pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-
+          pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-
     
     # Step 5: Install dependencies
     - name: Install dependencies
