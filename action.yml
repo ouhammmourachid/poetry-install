@@ -45,12 +45,6 @@ runs:
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
       if: runner.os == 'Windows'
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: |
-        poetry install
-        poetry show
-      shell: bash
 
     # Step 4: Cache Poetry dependencies
     - name: Cache Poetry dependencies
@@ -58,7 +52,7 @@ runs:
       with:
         path: |
           ${{ runner.os == 'Windows' && 'C:\Users\runneradmin\AppData\Local\pypoetry' }}
-          ${{ runner.os == 'Linux' && '~/.cache/pypoetry/**/site-packages' }}
+          ${{ runner.os == 'Linux' && '~/.cache/pypoetry' }}
           ${{ runner.os == 'macOS' && '~/Library/Caches/pypoetry' }}
         key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
