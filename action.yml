@@ -44,7 +44,9 @@ runs:
       uses: actions/cache@v4
       with:
         path: ~/.cache/pypoetry
-        key: pypoetry-${{inputs.poetry-version}}-${{inputs.poetry-version}}-${{ hashFiles('**/poetry.lock') }}
+        key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-
     
     # Step 3: Install dependencies
     - name: Install dependencies
