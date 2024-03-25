@@ -14,4 +14,3 @@ jobs:
           poetry --help
           poetry version
           poetry run python --version
-```
