@@ -15,6 +15,10 @@ inputs:
     description: 'The version of Poetry to use.'
     required: true
     default: 'latest'
+  extra-args:
+    description: 'Extra arguments to pass to the `poetry install` command.'
+    required: false
+    default: ''
   
 
 runs:
@@ -61,7 +65,7 @@ runs:
     # Step 5: Install dependencies
     - name: Install dependencies
       run: |
-        poetry install
+        poetry install ${{ inputs.extra-args }}
         poetry show
       shell: bash
     
