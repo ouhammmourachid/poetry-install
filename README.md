@@ -6,7 +6,7 @@ This repository demonstrates how to use GitHub Actions to set up Python, install
 
 - `poetry-version`: this variable used to specify the version of Poetry that will be installed. The snok/install-poetry@v1 action is used to install Poetry default `latest`.
 
-- `extra-args`: this variable used to set the extra args for the `poetry install` command 
+- `extra-args`: this variable used to set the extra args for the `poetry install` command .
 
 ## Workflow
 
