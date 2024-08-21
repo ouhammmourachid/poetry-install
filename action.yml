@@ -1,42 +1,43 @@
-name: 'Install dependencies with Poetry'
-description: 'Install dependencies using Poetry.'
-author: '@ouhammmourachid'
+name: "Install dependencies with Poetry"
+description: "Install dependencies using Poetry."
+author: "@ouhammmourachid"
 branding:
-  icon: 'truck'
-  color: 'blue'
-
+  icon: "truck"
+  color: "blue"
 
 inputs:
   python-version:
-    description: 'The version of Python to use.'
+    description: "The version of Python to use."
     required: true
-    default: '3.10'
+    default: "3.10"
   poetry-version:
-    description: 'The version of Poetry to use.'
+    description: "The version of Poetry to use."
     required: true
-    default: 'latest'
+    default: "latest"
   extra-args:
-    description: 'Extra arguments to pass to the `poetry install` command.'
+    description: "Extra arguments to pass to the `poetry install` command."
     required: false
-    default: ''
-  
+    default: ""
+  install-dependencies:
+    description: "Whether to install dependencies or not."
+    required: false
+    default: "true"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-  
     # Step 1: Set up Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.python-version }}
-    
+
     # Step 2: Install Poetry
     - name: Install and configure Poetry
       uses: snok/install-poetry@v1.3.4
       with:
         version: ${{ inputs.poetry-version }}
-    
+
     # Step 3: create a virtual environment
     - name: Create a virtual environment
       run: |
@@ -61,11 +62,11 @@ runs:
         key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
           pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-
-    
+
     # Step 5: Install dependencies
     - name: Install dependencies
+      if: ${{ inputs.install-dependencies == 'true' }}
       run: |
         poetry install ${{ inputs.extra-args }}
         poetry show
       shell: bash
-    
