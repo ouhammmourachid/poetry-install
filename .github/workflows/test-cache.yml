@@ -5,15 +5,15 @@ on:
 
 jobs:
   ci:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./
         with:
-          install-dependencies: false
           python-version: 3.12
       - name: View poetry --help
         run: |
           poetry --help
           poetry version
           poetry run python --version
+          ls --all

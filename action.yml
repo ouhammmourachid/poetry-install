@@ -41,6 +41,8 @@ runs:
     # Step 3: create a virtual environment
     - name: Create a virtual environment
       run: |
+        poetry config virtualenvs.create true
+        poetry config virtualenvs.in-project true
         poetry env use python
         poetry env info
       shell: bash
@@ -50,15 +52,11 @@ runs:
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
       if: runner.os == 'Windows'
-
     # Step 4: Cache Poetry dependencies
     - name: Cache Poetry dependencies
       uses: actions/cache@v4
       with:
-        path: |
-          ${{ runner.os == 'Windows' && 'C:\Users\runneradmin\AppData\Local\pypoetry' }}
-          ${{ runner.os == 'Linux' && '~/.cache/pypoetry' }}
-          ${{ runner.os == 'macOS' && '~/Library/Caches/pypoetry' }}
+        path: .venv
         key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
           pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-

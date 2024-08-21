@@ -8,5 +8,5 @@ version_pattern = "MAJOR.MINOR.PATCH"
 ]
 
 "README.md" = [
-    "v{version}",
+    "poetry-install@v{version}",
 ]
