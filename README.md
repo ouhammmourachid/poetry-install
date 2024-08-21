@@ -1,4 +1,4 @@
-# poetry-install v2.0.0
+# poetry-install v1.0.0
 
 This repository demonstrates how to use GitHub Actions to set up Python, install Poetry, and install project dependencies.
 
@@ -7,6 +7,8 @@ This repository demonstrates how to use GitHub Actions to set up Python, install
 - `poetry-version`: this variable used to specify the version of Poetry that will be installed. The snok/install-poetry@v1 action is used to install Poetry default `latest`.
 
 - `extra-args`: this variable used to set the extra args for the `poetry install` command .
+
+- `install-dependencies`: default `true` used to install the dependencies. set it to `false` if you don't want to install the dependencies.
 
 ## Workflow
 
@@ -33,7 +35,7 @@ jobs:
       - name: checout
         uses: actions/checkout@v4
       - name: install dependecies
-        uses: ouhammmourachid/poetry-install@v2.0.0
+        uses: ouhammmourachid/poetry-install@v1.0.0
       - name: test
         run: poetry show --tree
 
