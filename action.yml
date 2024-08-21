@@ -41,6 +41,8 @@ runs:
     # Step 3: create a virtual environment
     - name: Create a virtual environment
       run: |
+        poetry config virtualenvs.create true
+        poetry config virtualenvs.in-project true
         poetry env use python
         poetry env info
       shell: bash
@@ -50,11 +52,6 @@ runs:
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
       if: runner.os == 'Windows'
-    - name: configure Poetry
-      run: |
-        poetry config virtualenvs.create true
-        poetry config virtualenvs.in-project true
-      shell: bash
     # Step 4: Cache Poetry dependencies
     - name: Cache Poetry dependencies
       uses: actions/cache@v4
