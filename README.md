@@ -1,4 +1,4 @@
-# poetry-install
+# poetry-install v2.0.0
 
 This repository demonstrates how to use GitHub Actions to set up Python, install Poetry, and install project dependencies.
 
@@ -33,7 +33,7 @@ jobs:
       - name: checout
         uses: actions/checkout@v4
       - name: install dependecies
-        uses: ouhammmourachid/poetry-install@v1
+        uses: ouhammmourachid/poetry-install@v2.0.0
       - name: test
         run: poetry show --tree
 
