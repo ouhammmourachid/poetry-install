@@ -1,4 +1,4 @@
-# poetry-install v1.0.0
+# poetry-install
 
 This repository demonstrates how to use GitHub Actions to set up Python, install Poetry, and install project dependencies.
 
