@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "something"
-version = "0.0.1"
-description = ""
+name = "poetry-install"
+version = "0.1.0"
+description = "A github action to install dependencies using poetry"
 authors = ["ouhammmourachid <rachidouhammou21@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.12"
 
 
 [tool.poetry.group.dev.dependencies]
-bumpver = "^2023.1129"
+pre-commit = "^3.8.0"
 
 [build-system]
 requires = ["poetry-core"]
