@@ -17,4 +17,4 @@ jobs:
           poetry --help
           poetry version
           poetry run python --version
-          ls -all
+          ls --all
