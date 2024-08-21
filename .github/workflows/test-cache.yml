@@ -9,8 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./
+        python-version: 3.12
         with:
-          extra-args: --no-root
+          install-dependencies: false
       - name: View poetry --help
         run: |
           poetry --help
