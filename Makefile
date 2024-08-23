@@ -11,8 +11,8 @@ install:
 update:
 	poetry update
 
-.PHONY: install-pre-commit
-install-pre-commit:
+.PHONY: install/pre-commit
+install/pre-commit:
 	$(PRE_COMMIT_CMD) uninstall && $(PRE_COMMIT_CMD) install
 
 .PHONY: lint
@@ -35,7 +35,7 @@ help:
 	@echo "  install           		install dependencies"
 	@echo "  update            		update dependencies"
 	@echo ""
-	@echo "  install-pre-commit 		install pre-commit hooks"
+	@echo "  install/pre-commit 		install pre-commit hooks"
 	@echo "  lint              		run linters"
 	@echo "  help              		show this help message"
 	@echo ""
