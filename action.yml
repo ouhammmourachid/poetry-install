@@ -34,7 +34,7 @@ runs:
 
     # Step 2: Install Poetry
     - name: Install and configure Poetry
-      uses: snok/install-poetry@v1.3.4
+      uses: snok/install-poetry@v1.4.1
       with:
         version: ${{ inputs.poetry-version }}
 
