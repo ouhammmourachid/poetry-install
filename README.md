@@ -35,7 +35,7 @@ jobs:
       - name: checout
         uses: actions/checkout@v4
       - name: install dependecies
-        uses: ouhammmourachid/poetry-install@v1.0.0
+        uses: ouhammmourachid/poetry-install@v2.0.0
       - name: test
         run: poetry show --tree
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-install"
-version = "1.0.0"
+version = "2.0.0"
 description = "A github action to install dependencies using poetry"
 authors = ["ouhammmourachid <rachidouhammou21@gmail.com>"]
 license = "MIT"
