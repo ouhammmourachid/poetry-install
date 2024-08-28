@@ -45,6 +45,7 @@ runs:
         poetry config virtualenvs.in-project true
         poetry env use python
         poetry env info
+        echo "poetry-version=$(poetry -V | grep -oP '(?<=version )\d+\.\d+\.\d+')" >> $GITHUB_ENV
       shell: bash
 
     - name: Add Poetry to PATH
@@ -57,7 +58,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: .venv
-        key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
+        key: pypoetry-${{inputs.python-version}}-${{env.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
           pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-
 
