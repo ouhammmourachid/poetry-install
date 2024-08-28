@@ -5,7 +5,7 @@ PRE_COMMIT_CMD		:= $(POETRY_RUN) pre-commit
 
 .PHONY: install
 install:
-	poetry install
+	poetry install --no-root
 
 .PHONY: update
 update:
