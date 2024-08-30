@@ -41,7 +41,7 @@ runs:
       run: |
         echo "$env:USERPROFILE\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       shell: pwsh
-      if: runner.os == 'Windows-latest'
+      if: runner.os == 'Windows'
 
     # Step 3: create a virtual environment
     - name: Create a virtual environment
