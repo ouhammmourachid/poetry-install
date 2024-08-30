@@ -60,7 +60,8 @@ runs:
     - name: Install dependencies
       if: ${{ inputs.install-dependencies == 'true' }}
       run: |
-        source .venv/bin/activate
+        ls -all
+        source $VENV
         poetry install ${{ inputs.extra-args }}
         poetry show
       shell: bash
