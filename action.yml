@@ -60,8 +60,9 @@ runs:
     - name: Install dependencies
       if: ${{ inputs.install-dependencies == 'true' }}
       run: |
-        ls -all
+        ls -all .venv
         source $VENV
+        poetry use $pythonLocation\python.exe
         poetry install ${{ inputs.extra-args }}
         poetry show
       shell: bash
