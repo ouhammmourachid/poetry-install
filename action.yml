@@ -62,7 +62,7 @@ runs:
       run: |
         ls -all .venv
         source $VENV
-        ls -all £poetryLocation
+        ls -all $poetryLocation
         poetry env use $pythonLocation\\python.exe
         poetry install ${{ inputs.extra-args }}
         poetry show
