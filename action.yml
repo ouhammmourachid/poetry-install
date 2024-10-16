@@ -1,53 +1,43 @@
-name: "Install dependencies with Poetry"
-description: "Install dependencies using Poetry."
-author: "@ouhammmourachid"
+name: 'Install dependencies with Poetry'
+description: 'Install dependencies using Poetry.'
+author: '@ouhammmourachid'
 branding:
-  icon: "truck"
-  color: "blue"
+  icon: 'truck'
+  color: 'blue'
+
 
 inputs:
   python-version:
-    description: "The version of Python to use."
+    description: 'The version of Python to use.'
     required: true
-    default: "3.10"
+    default: '3.10'
   poetry-version:
-    description: "The version of Poetry to use."
+    description: 'The version of Poetry to use.'
     required: true
-    default: "latest"
+    default: 'latest'
   extra-args:
-    description: "Extra arguments to pass to the `poetry install` command."
+    description: 'Extra arguments to pass to the `poetry install` command.'
     required: false
-    default: ""
-  install-dependencies:
-    description: "Whether to install dependencies or not."
-    required: false
-    default: "true"
-
+    default: ''
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     # Step 1: Set up Python
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.python-version }}
-
     # Step 2: Install Poetry
     - name: Install and configure Poetry
-      uses: snok/install-poetry@v1.4.1
+      uses: snok/install-poetry@v1.3.4
       with:
         version: ${{ inputs.poetry-version }}
-
     # Step 3: create a virtual environment
     - name: Create a virtual environment
       run: |
-        poetry config virtualenvs.create true
-        poetry config virtualenvs.in-project true
         poetry env use python
         poetry env info
-        echo "poetry-version=$(poetry -V | grep -oP '(?<=version )\d+\.\d+\.\d+')" >> $GITHUB_ENV
       shell: bash
-
     - name: Add Poetry to PATH
       run: |
         echo "C:\Users\runneradmin\.local\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
@@ -57,14 +47,15 @@ runs:
     - name: Cache Poetry dependencies
       uses: actions/cache@v4
       with:
-        path: .venv
-        key: pypoetry-${{inputs.python-version}}-${{env.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
+        path: |
+          ${{ runner.os == 'Windows' && 'C:\Users\runneradmin\AppData\Local\pypoetry' }}
+          ${{ runner.os == 'Linux' && '~/.cache/pypoetry' }}
+          ${{ runner.os == 'macOS' && '~/Library/Caches/pypoetry' }}
+        key: pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
           pypoetry-${{inputs.python-version}}-${{inputs.poetry-version}}-${{runner.os}}-
-
     # Step 5: Install dependencies
     - name: Install dependencies
-      if: ${{ inputs.install-dependencies == 'true' }}
       run: |
         poetry install ${{ inputs.extra-args }}
         poetry show
